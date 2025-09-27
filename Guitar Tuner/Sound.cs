@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Runtime.CompilerServices.RuntimeHelpers;
 
@@ -12,7 +13,6 @@ namespace Guitar_Tuner
     {
         public Form1 gui;
         private BufferedWaveProvider bufferedWaveProvider = null;
-
 
         public Dictionary<string, string> NoteToKey { get; private set; } = new Dictionary<string, string>();
         // словарь базовых частот
@@ -181,7 +181,6 @@ namespace Guitar_Tuner
             if (!lastHit.ContainsKey(note) || (DateTime.Now - lastHit[note]).TotalMilliseconds > KeyCooldownMs)
             {
                 Console.WriteLine($"[DEBUG] TriggerKey called for {note} -> {action}");
-
                 gui?.Invoke(new Action(() =>
                 {
                     switch (action)
@@ -208,7 +207,7 @@ namespace Guitar_Tuner
                         case "ScrollDown":
                             MouseSimulator.Scroll(-120); break;
 
-                        default: // если это клавиша, например "0x41"
+                        default:
                             SendKeys.SendWait(action); break;
                     }
                 }));
