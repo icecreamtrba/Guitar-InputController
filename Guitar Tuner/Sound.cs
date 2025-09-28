@@ -13,8 +13,24 @@ namespace Guitar_Tuner
     {
         public Form1 gui;
         private BufferedWaveProvider bufferedWaveProvider = null;
+        public IControlManager CurrentControlManager { get; set; }
+        public WindowsControlManager WindowsManager { get; private set; }
+        public MinecraftControlManager MinecraftManager { get; private set; }
+        // ★★★★ РАЗДЕЛЬНЫЕ СЛОВАРИ ДЛЯ КАЖДОГО РЕЖИМА ★★★★
+        public Dictionary<string, string> NoteToKeyWindows { get; private set; } = new Dictionary<string, string>();
+        public Dictionary<string, string> NoteToKeyMinecraft { get; private set; } = new Dictionary<string, string>();
 
-        public Dictionary<string, string> NoteToKey { get; private set; } = new Dictionary<string, string>();
+        // ★★★★ СВОЙСТВО ДЛЯ ТЕКУЩЕГО СЛОВАРЯ ★★★★
+        public Dictionary<string, string> CurrentNoteToKey
+        {
+            get
+            {
+                if (CurrentControlManager is MinecraftControlManager)
+                    return NoteToKeyMinecraft;
+                else
+                    return NoteToKeyWindows;
+            }
+        }
         // словарь базовых частот
         public readonly Dictionary<string, float> noteBaseFreqs = new Dictionary<string, float>()
         {
@@ -31,6 +47,83 @@ namespace Guitar_Tuner
         private readonly Dictionary<string, DateTime> lastHit = new Dictionary<string, DateTime>();
         private const int KeyCooldownMs = 300;
 
+        private WaveInEvent currentWaveIn;
+        private volatile bool isDetecting = false;
+
+        public void StopDetection()
+        {
+            isDetecting = false;
+            currentWaveIn?.StopRecording();
+            currentWaveIn?.Dispose();
+            currentWaveIn = null;
+        }
+
+        public Sound(MinecraftMod minecraftMod = null)
+        {
+            WindowsManager = new WindowsControlManager();
+
+            // ★★★★ СОЗДАВАЙТЕ МЕНЕДЖЕР ДАЖЕ ЕСЛИ ПОДКЛЮЧЕНИЕ НЕ УДАЛОСЬ ★★★★
+            if (minecraftMod != null)
+            {
+                MinecraftManager = new MinecraftControlManager(minecraftMod);
+                Console.WriteLine($"[Sound] MinecraftManager created");
+                Console.WriteLine($"[Sound] MinecraftMod provided: {minecraftMod != null}");
+                Console.WriteLine($"[Sound] MinecraftMod connected: {minecraftMod.IsConnected}");
+            }
+            else
+            {
+                Console.WriteLine($"[Sound] No MinecraftMod provided - minecraftMod is null");
+                MinecraftManager = null;
+            }
+
+            CurrentControlManager = WindowsManager;
+
+            Console.WriteLine($"[Sound] Initialized - Windows: {WindowsManager != null}, Minecraft: {MinecraftManager != null}");
+        }
+        public void UpdateMinecraftMod(MinecraftMod mod)
+        {
+            if (mod != null)
+            {
+                MinecraftManager = new MinecraftControlManager(mod);
+                Console.WriteLine($"[Sound] MinecraftManager updated");
+            }
+        }
+        public void SwitchToWindowsMode()
+        {
+            CurrentControlManager = WindowsManager;
+            Console.WriteLine("[Sound] Switched to Windows control mode");
+            gui?.UpdateControlModeDisplay(); // Обновляем интерфейс
+        }
+
+        public void SwitchToMinecraftMode()
+        {
+            // ★★★★ ДОБАВЬТЕ ПОДРОБНУЮ ОТЛАДКУ ★★★★
+            Console.WriteLine($"[Sound] SwitchToMinecraftMode called");
+            Console.WriteLine($"[Sound] MinecraftManager: {MinecraftManager != null}");
+
+            if (MinecraftManager != null)
+            {
+                Console.WriteLine($"[Sound] MinecraftManager.IsConnected: {MinecraftManager.IsConnected}");
+                Console.WriteLine($"[Sound] MinecraftManager.IsEnabled: {MinecraftManager.IsEnabled}");
+            }
+
+            if (MinecraftManager != null && MinecraftManager.IsConnected && MinecraftManager.IsEnabled)
+            {
+                CurrentControlManager = MinecraftManager;
+                Console.WriteLine("[Sound] Switched to Minecraft control mode");
+                gui?.UpdateControlModeDisplay();
+            }
+            else
+            {
+                string reason = "неизвестная причина";
+                if (MinecraftManager == null) reason = "MinecraftManager не создан";
+                else if (!MinecraftManager.IsConnected) reason = "Minecraft не подключен";
+                else if (!MinecraftManager.IsEnabled) reason = "MinecraftManager отключен";
+
+                Console.WriteLine($"[Sound] Minecraft mod not available: {reason}");
+                MessageBox.Show($"Minecraft мод не доступен: {reason}");
+            }
+        }
         public int SelectInputDevice()
         {
             int inputDevice = 0;
@@ -63,17 +156,19 @@ namespace Guitar_Tuner
 
         public void StartDetect(int inputDevice)
         {
-            WaveInEvent waveIn = new WaveInEvent
+            isDetecting = true;
+
+            currentWaveIn = new WaveInEvent
             {
                 DeviceNumber = inputDevice
             };
 
             var caps = WaveInEvent.GetCapabilities(inputDevice);
-            waveIn.WaveFormat = new WaveFormat(44100, caps.Channels);
-            waveIn.DataAvailable += WaveIn_DataAvailable;
-            bufferedWaveProvider = new BufferedWaveProvider(waveIn.WaveFormat);
+            currentWaveIn.WaveFormat = new WaveFormat(44100, caps.Channels);
+            currentWaveIn.DataAvailable += WaveIn_DataAvailable;
+            bufferedWaveProvider = new BufferedWaveProvider(currentWaveIn.WaveFormat);
 
-            waveIn.StartRecording();
+            currentWaveIn.StartRecording();
 
             IWaveProvider stream = caps.Channels > 1
                 ? new Wave16ToFloatProvider(new StereoToMonoProvider16(bufferedWaveProvider))
@@ -115,6 +210,19 @@ namespace Guitar_Tuner
 
                                 if (foundRow != null)
                                     foundRow.DefaultCellStyle.BackColor = Color.LightGreen;
+
+
+
+
+                                foreach (DataGridViewRow row in gui.dataGridView2.Rows)
+                                    row.DefaultCellStyle.BackColor = Color.White;
+
+                                var foundRow2 = gui.dataGridView2.Rows
+                                    .Cast<DataGridViewRow>()
+                                    .FirstOrDefault(r => r.Cells[0].Value.ToString() == note);
+
+                                if (foundRow2 != null)
+                                    foundRow2.DefaultCellStyle.BackColor = Color.LightGreen;
                             }));
                         }
                         else
@@ -128,16 +236,33 @@ namespace Guitar_Tuner
 
                             if (foundRow != null)
                                 foundRow.DefaultCellStyle.BackColor = Color.LightGreen;
+
+
+
+
+                            foreach (DataGridViewRow row in gui.dataGridView2.Rows)
+                                row.DefaultCellStyle.BackColor = Color.White;
+
+                            var foundRow2 = gui.dataGridView2.Rows
+                                .Cast<DataGridViewRow>()
+                                .FirstOrDefault(r => r.Cells[0].Value.ToString() == note);
+
+                            if (foundRow2 != null)
+                                foundRow2.DefaultCellStyle.BackColor = Color.LightGreen;
                         }
                         // --- эмуляция клавиш через GUI-поток ---
                         TriggerKey(note);
                     }
                 }
 
-            } while (bytesRead != 0 && !(Console.KeyAvailable && Console.ReadKey(true).Key == ConsoleKey.Escape));
+            } while (bytesRead != 0 && isDetecting &&
+                !(Console.KeyAvailable && Console.ReadKey(true).Key == ConsoleKey.Escape));
 
-            waveIn.StopRecording();
-            waveIn.Dispose();
+            if (isDetecting)
+            {
+                currentWaveIn.StopRecording();
+                currentWaveIn.Dispose();
+            }
         }
 
         private void WaveIn_DataAvailable(object sender, WaveInEventArgs e)
@@ -175,45 +300,17 @@ namespace Guitar_Tuner
         // --- новый TriggerKey с gui.Invoke ---
         private void TriggerKey(string note)
         {
-            if (!NoteToKey.TryGetValue(note, out string action) || string.IsNullOrEmpty(action))
-                return; // ничего не назначено
-
-            if (!lastHit.ContainsKey(note) || (DateTime.Now - lastHit[note]).TotalMilliseconds > KeyCooldownMs)
+            // ★★★★ ИСПОЛЬЗУЕМ ТЕКУЩИЙ СЛОВАРЬ ★★★★
+            if (!CurrentNoteToKey.TryGetValue(note, out string action) || string.IsNullOrEmpty(action))
             {
-                Console.WriteLine($"[DEBUG] TriggerKey called for {note} -> {action}");
-                gui?.Invoke(new Action(() =>
-                {
-                    switch (action)
-                    {
-                        // --- клавиши ---
-                        case "LClick":
-                            MouseSimulator.LeftClick(); break;
-                        case "RClick":
-                            MouseSimulator.RightClick(); break;
-                        case "MClick":
-                            MouseSimulator.MiddleClick(); break;
-
-                        case "MoveUp":
-                            MouseSimulator.Move(0, -10); break;
-                        case "MoveDown":
-                            MouseSimulator.Move(0, 10); break;
-                        case "MoveLeft":
-                            MouseSimulator.Move(-10, 0); break;
-                        case "MoveRight":
-                            MouseSimulator.Move(10, 0); break;
-
-                        case "ScrollUp":
-                            MouseSimulator.Scroll(120); break;
-                        case "ScrollDown":
-                            MouseSimulator.Scroll(-120); break;
-
-                        default:
-                            SendKeys.SendWait(action); break;
-                    }
-                }));
-
-                lastHit[note] = DateTime.Now;
+                Console.WriteLine($"[Sound] No mapping for note: {note} in current mode");
+                return;
             }
+
+            Console.WriteLine($"[Sound] TriggerKey: {note} -> {action}");
+            Console.WriteLine($"[Sound] CurrentControlManager: {CurrentControlManager?.GetType().Name}");
+
+            CurrentControlManager?.HandleNote(action);
         }
 
 

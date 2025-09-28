@@ -30,20 +30,7 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Note = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Freq = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,7 +40,28 @@
             this.button1 = new System.Windows.Forms.Button();
             this.buttonSave = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.btnWindows = new System.Windows.Forms.Button();
+            this.btnMinecraft = new System.Windows.Forms.Button();
+            this.btnStartDetection = new System.Windows.Forms.Button();
+            this.btnSelectDevice = new System.Windows.Forms.Button();
+            this.btnStopDetection = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -79,16 +87,6 @@
             this.label2.Text = "А";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft YaHei", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(29, 41);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(103, 28);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Частоты";
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -99,126 +97,6 @@
             this.label5.TabIndex = 3;
             this.label5.Text = "Частота";
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft YaHei", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label6.Location = new System.Drawing.Point(31, 116);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(146, 28);
-            this.label6.TabIndex = 4;
-            this.label6.Text = "\"C#\", 17.32f ";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft YaHei", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label7.Location = new System.Drawing.Point(31, 180);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(139, 28);
-            this.label7.TabIndex = 5;
-            this.label7.Text = "\"Eb\", 19.45f";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft YaHei", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label8.Location = new System.Drawing.Point(31, 212);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(125, 28);
-            this.label8.TabIndex = 6;
-            this.label8.Text = "\"E\", 20.60f";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft YaHei", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label9.Location = new System.Drawing.Point(31, 244);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(125, 28);
-            this.label9.TabIndex = 7;
-            this.label9.Text = "\"F\", 21.83f";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft YaHei", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label10.Location = new System.Drawing.Point(31, 276);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(138, 28);
-            this.label10.TabIndex = 8;
-            this.label10.Text = "\"F#\", 23.12f";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft YaHei", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label11.Location = new System.Drawing.Point(31, 308);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(135, 28);
-            this.label11.TabIndex = 9;
-            this.label11.Text = "\"G\", 24.50f ";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft YaHei", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label12.Location = new System.Drawing.Point(31, 148);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(130, 28);
-            this.label12.TabIndex = 10;
-            this.label12.Text = "\"D\", 18.35f";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft YaHei", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label13.Location = new System.Drawing.Point(31, 340);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(148, 28);
-            this.label13.TabIndex = 10;
-            this.label13.Text = "\"G#\", 25.96f ";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft YaHei", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label14.Location = new System.Drawing.Point(31, 372);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(129, 28);
-            this.label14.TabIndex = 11;
-            this.label14.Text = "\"A\", 27.50f";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft YaHei", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label15.Location = new System.Drawing.Point(31, 84);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(127, 28);
-            this.label15.TabIndex = 12;
-            this.label15.Text = "\"C\", 16.35f";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Microsoft YaHei", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label17.Location = new System.Drawing.Point(31, 404);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(141, 28);
-            this.label17.TabIndex = 13;
-            this.label17.Text = "\"Bb\", 29.14f";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Microsoft YaHei", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label18.Location = new System.Drawing.Point(31, 436);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(127, 28);
-            this.label18.TabIndex = 14;
-            this.label18.Text = "\"B\", 30.87f";
-            // 
             // dataGridView1
             // 
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
@@ -227,9 +105,9 @@
             this.Note,
             this.Freq,
             this.Key});
-            this.dataGridView1.Location = new System.Drawing.Point(521, 41);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(432, 423);
+            this.dataGridView1.Size = new System.Drawing.Size(424, 395);
             this.dataGridView1.TabIndex = 15;
             this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
             // 
@@ -298,32 +176,171 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(12, 162);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(199, 28);
+            this.button3.TabIndex = 21;
+            this.button3.Text = "Minecraft Connect";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Location = new System.Drawing.Point(521, 64);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(432, 421);
+            this.tabControl1.TabIndex = 23;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.dataGridView1);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(424, 395);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Windows";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.dataGridView2);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(424, 395);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Minecraft";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3});
+            this.dataGridView2.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.Size = new System.Drawing.Size(424, 395);
+            this.dataGridView2.TabIndex = 16;
+            this.dataGridView2.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellValueChanged);
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "Нота";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Частота";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "Привязанная клавиша";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.BackColor = System.Drawing.Color.Coral;
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1,
+            this.toolStripStatusLabel2});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 542);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(965, 22);
+            this.statusStrip1.TabIndex = 24;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(208, 17);
+            this.toolStripStatusLabel1.Text = "Текущая конфигурация управления:";
+            // 
+            // toolStripStatusLabel2
+            // 
+            this.toolStripStatusLabel2.BackColor = System.Drawing.Color.Lime;
+            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(156, 17);
+            this.toolStripStatusLabel2.Text = "Конфигурация управления";
+            // 
+            // btnWindows
+            // 
+            this.btnWindows.Location = new System.Drawing.Point(12, 41);
+            this.btnWindows.Name = "btnWindows";
+            this.btnWindows.Size = new System.Drawing.Size(199, 52);
+            this.btnWindows.TabIndex = 25;
+            this.btnWindows.Text = "Режим управления Windows";
+            this.btnWindows.UseVisualStyleBackColor = true;
+            // 
+            // btnMinecraft
+            // 
+            this.btnMinecraft.Location = new System.Drawing.Point(12, 104);
+            this.btnMinecraft.Name = "btnMinecraft";
+            this.btnMinecraft.Size = new System.Drawing.Size(199, 52);
+            this.btnMinecraft.TabIndex = 26;
+            this.btnMinecraft.Text = "Режим управления Minecraft";
+            this.btnMinecraft.UseVisualStyleBackColor = true;
+            // 
+            // btnStartDetection
+            // 
+            this.btnStartDetection.Location = new System.Drawing.Point(12, 329);
+            this.btnStartDetection.Name = "btnStartDetection";
+            this.btnStartDetection.Size = new System.Drawing.Size(199, 28);
+            this.btnStartDetection.TabIndex = 27;
+            this.btnStartDetection.Text = "Начать прослушивание";
+            this.btnStartDetection.UseVisualStyleBackColor = true;
+            this.btnStartDetection.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // btnSelectDevice
+            // 
+            this.btnSelectDevice.Location = new System.Drawing.Point(12, 295);
+            this.btnSelectDevice.Name = "btnSelectDevice";
+            this.btnSelectDevice.Size = new System.Drawing.Size(199, 28);
+            this.btnSelectDevice.TabIndex = 28;
+            this.btnSelectDevice.Text = "Выбрать устройство";
+            this.btnSelectDevice.UseVisualStyleBackColor = true;
+            this.btnSelectDevice.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // btnStopDetection
+            // 
+            this.btnStopDetection.Location = new System.Drawing.Point(12, 363);
+            this.btnStopDetection.Name = "btnStopDetection";
+            this.btnStopDetection.Size = new System.Drawing.Size(199, 28);
+            this.btnStopDetection.TabIndex = 29;
+            this.btnStopDetection.Text = "Остановить прослушивание";
+            this.btnStopDetection.UseVisualStyleBackColor = true;
+            this.btnStopDetection.Click += new System.EventHandler(this.button6_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this.ClientSize = new System.Drawing.Size(965, 535);
+            this.ClientSize = new System.Drawing.Size(965, 564);
+            this.Controls.Add(this.btnStopDetection);
+            this.Controls.Add(this.btnSelectDevice);
+            this.Controls.Add(this.btnStartDetection);
+            this.Controls.Add(this.btnMinecraft);
+            this.Controls.Add(this.btnWindows);
+            this.Controls.Add(this.statusStrip1);
+            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.label18);
-            this.Controls.Add(this.label17);
-            this.Controls.Add(this.label15);
-            this.Controls.Add(this.label14);
-            this.Controls.Add(this.label13);
-            this.Controls.Add(this.label12);
-            this.Controls.Add(this.label11);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -331,8 +348,15 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Guitar Controller";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -341,20 +365,7 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label label18;
         private System.Windows.Forms.DataGridViewTextBoxColumn Note;
         private System.Windows.Forms.DataGridViewTextBoxColumn Freq;
         private System.Windows.Forms.DataGridViewTextBoxColumn Key;
@@ -365,5 +376,21 @@
         public System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
+        public System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.Button btnWindows;
+        private System.Windows.Forms.Button btnMinecraft;
+        private System.Windows.Forms.Button btnStartDetection;
+        private System.Windows.Forms.Button btnSelectDevice;
+        private System.Windows.Forms.Button btnStopDetection;
     }
 }

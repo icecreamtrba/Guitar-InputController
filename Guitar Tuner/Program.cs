@@ -9,14 +9,12 @@ namespace Guitar_Tuner
         [STAThread]
         public static void Main()
         {
-            Sound sound = new Sound(); // ещё без gui
-
+            // ★★★★ СОЗДАЕМ ФОРМУ БЕЗ ПЕРЕДАЧИ SOUND ★★★★
             Form1 gui = null;
 
             Thread guiThread = new Thread(() =>
             {
-                gui = new Form1(sound);
-                sound.gui = gui; // сразу после создания формы
+                gui = new Form1(); // ★★★★ БЕЗ ПАРАМЕТРОВ ★★★★
                 Application.Run(gui);
             });
             guiThread.SetApartmentState(ApartmentState.STA);
@@ -27,8 +25,9 @@ namespace Guitar_Tuner
             while (gui == null || !gui.IsHandleCreated)
                 Thread.Sleep(50);
 
-            int device = sound.SelectInputDevice();
-            sound.StartDetect(device);
+            // ★★★★ ТЕПЕРЬ SOUND СОЗДАЕТСЯ В Form1_Load ★★★★
+            // НЕ ВЫЗЫВАЕМ sound.SelectInputDevice() и sound.StartDetect() здесь
+            // Это будет сделано через GUI
 
             guiThread.Join();
         }
